@@ -38,14 +38,18 @@ exports.create = async (req, res) => {
     const subscribers = await Subscriber.findAll();
 
     if (subscribers.length > 0) {
-      const mailOptions = {
-        from: process.env.EMAIL_USER,
-        subject: `Yeni Blog Yayınlandı: ${newBlog.name}`,
-        text: `Merhaba, yeni blog yazımız yayında: ${newBlog.name}\n\n${newBlog.description}\n\nDetaylar için tıklayın: http://localhost:3000/blog/${newBlog.id}`,
-        html: `<h3>Yeni Blog Yayınlandı: ${newBlog.name}</h3>
-               <p>${newBlog.description}</p>
-               <a href="https://aliardagul-av-tr.netlify.app">Detayları Görüntüle</a>`,
-      };
+  subscribers.forEach(subscriber => {
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: subscriber.email,  // Her bir aboneye e-posta gönder
+      subject: `Yeni Blog Yayınlandı: ${newBlog.name}`,
+      text: `Merhaba, yeni blog yazımız yayında: ${newBlog.name}\n\n${newBlog.description}\n\nDetaylar için tıklayın: https://aliardagul-av-tr.netlify.app/blog/${newBlog.id}`,
+      html: `
+        <h3>Yeni Blog Yayınlandı: ${newBlog.name}</h3>
+        <p>${newBlog.description}</p>
+        <a href="https://aliardagul-av-tr.netlify.app/blog/${newBlog.id}">Detayları Görüntüle</a>
+      `,
+    };
 
       subscribers.forEach(subscriber => {
         transporter.sendMail({ ...mailOptions, to: subscriber.email }, (err, info) => {
