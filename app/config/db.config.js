@@ -1,17 +1,20 @@
-const { DB_USER, DB_PASS, DB_HOST, DB_NAME, DB_PORT, SSL_MODE } = process.env;
-
 module.exports = {
-  dialect: "postgres",
-  protocol: "postgres",
-  host: DB_HOST,
-  port: DB_PORT,
-  username: DB_USER,
-  password: DB_PASS,
-  database: DB_NAME,
+  HOST: process.env.DB_HOST,       // Veritabanı host adresi
+  USER: process.env.DB_USER,       // Veritabanı kullanıcı adı
+  PASSWORD: process.env.DB_PASS,   // Veritabanı şifresi
+  DB: process.env.DB_NAME,         // Veritabanı adı
+  PORT: process.env.DB_PORT || 5432, // PostgreSQL varsayılan portu
+  dialect: "postgres",             // Veritabanı türü
   dialectOptions: {
     ssl: {
-      require: SSL_MODE === "require", // SSL bağlantısı
-      rejectUnauthorized: false // Kendinden imzalı sertifikaları kabul et
+      require: true, // SSL bağlantısını zorunlu hale getiriyoruz
+      rejectUnauthorized: false // Kendinden imzalı sertifikalar için false yapıyoruz
     }
+  },
+  pool: {
+    max: 5,                        // Maksimum bağlantı sayısı
+    min: 0,                        // Minimum bağlantı sayısı
+    acquire: 30000,                // Bağlantı almak için bekleme süresi (ms)
+    idle: 10000                    // Bağlantı boşta kalma süresi (ms)
   }
 };
