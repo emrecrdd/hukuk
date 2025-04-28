@@ -43,15 +43,74 @@ exports.create = async (req, res) => {
       from: process.env.EMAIL_USER,
       to: subscriber.email,  // Her bir aboneye e-posta gönder
       subject: `Yeni Blog Yayınlandı: ${newBlog.name}`,
-      text: `Merhaba, yeni blog yazımız yayında: ${newBlog.name}\n\n${newBlog.description}\n\nDetaylar için tıklayın: https://aliardagul-av-tr.netlify.app/blog/${newBlog.id}`,
+      text: `Merhaba,\n\nYeni blog yazımız yayında: ${newBlog.name}\n\n${newBlog.description}\n\nDetaylar için tıklayın: https://aliardagul-av-tr.netlify.app/blog/${newBlog.id}`,
       html: `
-        <h3>Yeni Blog Yayınlandı: ${newBlog.name}</h3>
-        <p>${newBlog.description}</p>
-        <a href="https://aliardagul-av-tr.netlify.app/blog/${newBlog.id}">Detayları Görüntüle</a>
+        <html>
+          <head>
+            <style>
+              body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f4;
+                margin: 0;
+                padding: 0;
+              }
+              .container {
+                width: 100%;
+                max-width: 600px;
+                margin: 0 auto;
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+              }
+              .header {
+                background-color: #2c3e50;
+                color: #ffffff;
+                text-align: center;
+                padding: 10px;
+                border-radius: 8px 8px 0 0;
+              }
+              .header h3 {
+                margin: 0;
+              }
+              .content {
+                padding: 20px;
+                color: #333;
+              }
+              .footer {
+                text-align: center;
+                font-size: 12px;
+                color: #777;
+                padding: 10px;
+                background-color: #ecf0f1;
+                margin-top: 20px;
+                border-radius: 0 0 8px 8px;
+              }
+              a {
+                color: #2980b9;
+                text-decoration: none;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="header">
+                <h3>Merhaba!</h3>
+              </div>
+              <div class="content">
+                <h4><strong>Yeni Blog Yayınlandı: ${newBlog.name}</strong></h4>
+                <p>${newBlog.description}</p>
+                <p><a href="https://aliardagul-av-tr.netlify.app/blog/${newBlog.id}">Detayları Görüntüle</a></p>
+              </div>
+              <div class="footer">
+                <p>Bu e-posta, blog güncellemelerini almak için abone olduğunuzda gönderilmiştir.</p>
+              </div>
+            </div>
+          </body>
+        </html>
       `,
     };
 
-    // E-posta gönderimi
+    // E-posta gönderim işlemi
     transporter.sendMail(mailOptions, (err, info) => {
       if (err) {
         console.error(`E-posta gönderim hatası (${subscriber.email}):`, err);
