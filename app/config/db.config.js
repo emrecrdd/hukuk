@@ -1,5 +1,3 @@
-require('dotenv').config(); // .env dosyasındaki çevresel değişkenleri yükle
-
 module.exports = {
   HOST: process.env.DB_HOST,       // Veritabanı host adresi
   USER: process.env.DB_USER,       // Veritabanı kullanıcı adı
