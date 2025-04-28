@@ -20,23 +20,9 @@ db.sequelize = sequelize;
 
 // Modelleri içe aktarıyoruz
 
-db.Category = require("./category.model.js")(sequelize, Sequelize);
 db.Blog = require("./blog.model.js")(sequelize, Sequelize);
 db.Subscriber = require("./subscriber.model.js")(sequelize, Sequelize);
 db.Statistics = require("./statistics.model.js")(sequelize, Sequelize); // Statistics modelini ekledik
 
 
-
-// İlişkileri tanımlıyoruz
-db.Category.hasMany(db.Blog, {
-  foreignKey: "categoryId",
-  as: "blogs",
-});
-
-db.Blog.belongsTo(db.Category, {
-  foreignKey: "categoryId",
-  as: "category",
-});
-
-// İlişkileri çağırıyoruz
 module.exports = db;

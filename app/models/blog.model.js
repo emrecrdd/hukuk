@@ -18,13 +18,6 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  // Blog ile Category arasında ilişki kurma
-  Blog.associate = (models) => {
-    Blog.belongsTo(models.Category, {  // category ile ilişki kuruyoruz
-      foreignKey: "categoryId",
-      as: "category", // kategoriye "category" adıyla erişebileceğiz
-    });
-  };
 
   return Blog;
 };
