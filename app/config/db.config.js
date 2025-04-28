@@ -5,7 +5,7 @@ module.exports = {
   DB: process.env.DB_NAME,         // Veritabanı adı
   PORT: process.env.DB_PORT || 5432, // PostgreSQL varsayılan portu
   dialect: "postgres",             // Veritabanı türü
-  dialectOptions: {
+  dialectOptions: { 
     ssl: {
       require: process.env.SSL_MODE === "require", // SSL gerekliliği
       rejectUnauthorized: false // Kendinden imzalı sertifikalar için true yap
