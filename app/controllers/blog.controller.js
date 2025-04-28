@@ -37,7 +37,7 @@ exports.create = async (req, res) => {
 
     const subscribers = await Subscriber.findAll();
 
-    if (subscribers.length > 0) {
+ if (subscribers.length > 0) {
   subscribers.forEach(subscriber => {
     const mailOptions = {
       from: process.env.EMAIL_USER,
@@ -51,16 +51,19 @@ exports.create = async (req, res) => {
       `,
     };
 
-      subscribers.forEach(subscriber => {
-        transporter.sendMail({ ...mailOptions, to: subscriber.email }, (err, info) => {
-          if (err) {
-            console.error(`E-posta gönderim hatası (${subscriber.email}):`, err);
-          } else {
-            console.log(`E-posta başarıyla gönderildi: ${subscriber.email}`);
-          }
-        });
-      });
-    }
+    // E-posta gönderimi
+    transporter.sendMail(mailOptions, (err, info) => {
+      if (err) {
+        console.error(`E-posta gönderim hatası (${subscriber.email}):`, err);
+      } else {
+        console.log(`E-posta başarıyla gönderildi: ${subscriber.email}`);
+      }
+    });
+  });
+} else {
+  console.log("Abone yok, e-posta gönderilmedi.");
+}
+
 
     res.status(201).send(newBlog);
   } catch (error) {
