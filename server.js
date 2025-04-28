@@ -23,7 +23,7 @@ require("./app/routes/blog.routes")(app);
 require("./app/routes/subscriber.routes")(app);
 require("./app/routes/statistics.routes")(app);
 app.get("/", (req, res) => {
-  res.send("Sunucum canlıüüüüüüü!");
+  res.send("hukuk!");
 });
 
 // Port ayarı ve sunucu başlatma
