@@ -8,29 +8,22 @@ const app = express();
 const server = http.createServer(app);
 
 var corsOptions = {
-  origin: ["http://localhost:3000"], // Netlify frontend domain'i
+  origin: ["http://localhost:3000"],
   credentials: true
 };
-
 
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 const db = require("./app/models");
 db.sequelize.sync({ alter: true }).then(() => {
   console.log("Veritabanı senkronize edildi.");
 });
-
-// Veritabanı işlemleri ve diğer rotalar
-
 require("./app/routes/blog.routes")(app);
-
 require("./app/routes/subscriber.routes")(app);
 require("./app/routes/statistics.routes")(app);
-
 app.get("/", (req, res) => {
-  res.send("hukuk");
+  res.send("Sunucum canlıüüüüüüü!");
 });
 
 // Port ayarı ve sunucu başlatma
