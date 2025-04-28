@@ -37,7 +37,7 @@ exports.create = async (req, res) => {
 
     const subscribers = await Subscriber.findAll();
 
- if (subscribers.length > 0) {
+if (subscribers.length > 0) {
   subscribers.forEach(subscriber => {
     const mailOptions = {
       from: process.env.EMAIL_USER,
@@ -88,6 +88,23 @@ exports.create = async (req, res) => {
               a {
                 color: #2980b9;
                 text-decoration: none;
+              }
+
+              /* Responsive Design */
+              @media only screen and (max-width: 600px) {
+                .container {
+                  padding: 10px;
+                  width: 100%;
+                }
+                .header h3 {
+                  font-size: 20px;
+                }
+                .content {
+                  padding: 10px;
+                }
+                .footer {
+                  font-size: 10px;
+                }
               }
             </style>
           </head>
