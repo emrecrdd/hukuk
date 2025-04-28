@@ -1,3 +1,5 @@
+require('dotenv').config(); // .env dosyasındaki çevresel değişkenleri yükle
+
 module.exports = {
   HOST: process.env.DB_HOST,       // Veritabanı host adresi
   USER: process.env.DB_USER,       // Veritabanı kullanıcı adı
@@ -7,8 +9,8 @@ module.exports = {
   dialect: "postgres",             // Veritabanı türü
   dialectOptions: {
     ssl: {
-      require: true, // SSL bağlantısını zorunlu hale getiriyoruz
-      rejectUnauthorized: false // Kendinden imzalı sertifikalar için false yapıyoruz
+      require: process.env.SSL_MODE === "require", // SSL gerekliliği
+      rejectUnauthorized: false // Kendinden imzalı sertifikalar için true yap
     }
   },
   pool: {
