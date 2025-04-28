@@ -20,10 +20,6 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.TEXT,  // İçeriğin uzun ve HTML formatında olacağını varsayıyoruz.
       allowNull: false,
     },
-    
   });
-
- 
-
   return Blog;
 };
