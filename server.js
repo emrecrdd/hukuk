@@ -21,6 +21,7 @@ db.sequelize.sync({ alter: true }).then(() => {
 });
 require("./app/routes/blog.routes")(app);
 require("./app/routes/subscriber.routes")(app);
+require("./app/routes/appointment.routes")(app);
 require("./app/routes/statistics.routes")(app);
 app.get("/", (req, res) => {
   res.send("hukuk!");
