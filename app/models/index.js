@@ -29,6 +29,7 @@ module.exports = db;
 
 db.Blog = require("./blog.model.js")(sequelize, Sequelize);
 db.Subscriber = require("./subscriber.model.js")(sequelize, Sequelize);
+db.Appointment = require("./appointment.model.js")(sequelize, Sequelize); 
 db.Statistics = require("./statistics.model.js")(sequelize, Sequelize); 
 
 module.exports = db;
