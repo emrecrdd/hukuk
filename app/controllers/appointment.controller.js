@@ -20,11 +20,8 @@ exports.create = (req, res) => {
     status: req.body.status || "pending" // Varsayılan olarak "pending" durumu
   };
 
-   Appointment.create(appointment)
+  Appointment.create(appointment)
     .then(data => {
-      const io = req.app.get("io");
-      io.emit("newAppointment", data); // Tüm admin client'lara gönder
-
       res.status(201).send(data);
     })
     .catch(err => {
