@@ -26,7 +26,8 @@ module.exports = db;
 
 
 // Modelleri içe aktarıyoruz
-
+db.User = require("./user.model.js")(sequelize, Sequelize); 
+db.Auth = require("./auth.model.js")(sequelize, Sequelize); // Yeni Auth modelini ekledik
 db.Blog = require("./blog.model.js")(sequelize, Sequelize);
 db.Subscriber = require("./subscriber.model.js")(sequelize, Sequelize);
 db.Appointment = require("./appointment.model.js")(sequelize, Sequelize); 
