@@ -20,6 +20,7 @@ db.sequelize.sync({ alter: true }).then(() => {
   console.log("Veritabanı senkronize edildi.");
 });
 require("./app/routes/user.routes")(app);
+require("./app/routes/authRoutes")(app);
 require("./app/routes/blog.routes")(app);
 require("./app/routes/subscriber.routes")(app);
 require("./app/routes/appointment.routes")(app);
