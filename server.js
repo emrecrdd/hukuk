@@ -32,5 +32,5 @@ app.get("/", (req, res) => {
 // Port ayarı ve sunucu başlatma
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
-  console.log(Sunucu ${PORT} portunda çalışıyor.);
+  console.log(`Sunucu ${PORT} portunda çalışıyor.`);
 });
