@@ -11,6 +11,8 @@ module.exports = (app) => {
   
     // E-posta açılma istatistiklerini güncelle
     router.post("/email-opened", statistics.emailOpened);
+    router.post('/update-after-delete', statistics.updateAfterDelete);
+
   
     // İstatistikleri al
     router.get("/", statistics.getStatistics);
