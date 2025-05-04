@@ -49,44 +49,40 @@ exports.findAll = async (req, res) => {
 exports.create = async (req, res) => {
   const { email } = req.body;
 
-  // E-posta adresi kontrolü
   if (!email) {
     return res.status(400).json({ message: "E-posta adresi gerekli." });
   }
 
-  // E-posta formatı kontrolü
   if (!validateEmail(email)) {
     return res.status(400).json({ message: "Geçersiz e-posta adresi." });
   }
 
   try {
-    // Email zaten kayıtlı mı kontrol et
     const existingSubscriber = await Subscriber.findOne({ where: { email } });
 
     if (existingSubscriber) {
       return res.status(400).json({ message: "Bu e-posta zaten kayıtlı." });
     }
 
-    // Abone kaydını veritabanına ekle
     await Subscriber.create({ email });
 
-    // E-posta gönderim işlemi
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: email,
-      subject: 'CRD Soft Bülteni Aboneliği',
-      text: 'CRD Soft bültenine abone olduğunuz için teşekkür ederiz!',
+      subject: 'Ali Arda Gül Hukuk Bürosu Bülteni',
+      text: 'Ali Arda Gül Hukuk Bürosu bültenine abone olduğunuz için teşekkür ederiz!',
       html: `
-      <h3>CRD Soft bültenine abone olduğunuz için teşekkür ederiz!</h3>
-      <p>Yazılım geliştirme ve teknoloji haberleri için bizimle kalın.</p>
-      <img src="${process.env.BACKEND_URL}/api/statistics/email-opened" alt="" width="1" height="1" />
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+          <h2>Ali Arda Gül Hukuk Bürosu'na Hoş Geldiniz!</h2>
+          <p>Aboneliğiniz için teşekkür ederiz. Hukuk dünyasındaki en son gelişmelerden haberdar olacaksınız.</p>
+          <img src="https://aliardagul-av-tr.netlify.app/assets/aarda.png" alt="Ali Arda Gül" style="max-width: 100%; height: auto;" />
+          <p style="margin-top: 20px;">Bizi sosyal medya hesaplarımızdan da takip etmeyi unutmayın.</p>
+        </div>
       `,
     };
 
-    // E-posta gönderim fonksiyonunu çağır
     await sendEmail(mailOptions);
 
-    // Başarıyla abonelik
     res.status(201).json({ message: "Başarıyla abone oldunuz! Hoş geldiniz!" });
 
   } catch (error) {
@@ -94,6 +90,7 @@ exports.create = async (req, res) => {
     res.status(500).json({ message: `Abonelik işlemi sırasında bir hata oluştu: ${error.message}` });
   }
 };
+
 exports.delete = async (req, res) => {
     const { email } = req.params;
     try {
