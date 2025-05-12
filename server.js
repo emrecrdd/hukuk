@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 
 var corsOptions = {
-  origin: ["http://localhost:3000","https://aliardagul-av-tr.netlify.app"],
+  origin: ["http://localhost:3000","https://aliardagul.av.tr"],
   credentials: true
 };
 
