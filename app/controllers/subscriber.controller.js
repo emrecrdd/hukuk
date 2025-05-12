@@ -75,7 +75,7 @@ exports.create = async (req, res) => {
         <div style="font-family: Arial, sans-serif; padding: 20px;">
           <h2>Ali Arda Gül Hukuk Bürosu'na Hoş Geldiniz!</h2>
           <p>Aboneliğiniz için teşekkür ederiz. Hukuk dünyasındaki en son gelişmelerden haberdar olacaksınız.</p>
-          <img src="https://aliardagul-av-tr.netlify.app/assets/aarda.png" alt="Ali Arda Gül" style="max-width: 100%; height: auto;" />
+          <img src="https://aliardagul.av.tr/assets/aarda.png" alt="Ali Arda Gül" style="max-width: 100%; height: auto;" />
           <p style="margin-top: 20px;">Bizi sosyal medya hesaplarımızdan da takip etmeyi unutmayın.</p>
         </div>
       `,
