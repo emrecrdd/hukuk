@@ -43,7 +43,7 @@ if (subscribers.length > 0) {
       from: process.env.EMAIL_USER,
       to: subscriber.email,  // Her bir aboneye e-posta gönder
       subject: `Yeni Blog Yayınlandı: ${newBlog.name}`,
-      text: `Merhaba,\n\nYeni blog yazımız yayında: ${newBlog.name}\n\n${newBlog.description}\n\nDetaylar için tıklayın: https://aliardagul-av-tr.netlify.app/blog/${newBlog.id}`,
+      text: `Merhaba,\n\nYeni blog yazımız yayında: ${newBlog.name}\n\n${newBlog.description}\n\nDetaylar için tıklayın: https://aliardagul.av.tr/blog/${newBlog.id}`,
       html: `
         <html>
           <head>
@@ -116,7 +116,7 @@ if (subscribers.length > 0) {
               <div class="content">
                 <h4><strong>Yeni Blog Yayınlandı: ${newBlog.name}</strong></h4>
                 <p>${newBlog.description}</p>
-                <p><a href="https://aliardagul-av-tr.netlify.app/blog/${newBlog.id}">Detayları Görüntüle</a></p>
+                <p><a href="https://aliardagul.av.tr/blog/${newBlog.id}">Detayları Görüntüle</a></p>
               </div>
               <div class="footer">
                 <p>Bu e-posta, blog güncellemelerini almak için abone olduğunuzda gönderilmiştir.</p>
